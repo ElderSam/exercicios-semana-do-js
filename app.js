@@ -1,3 +1,7 @@
+alert('Pressione Ctrl + F12 para ver o console do JavaScript!');
+
+console.warn('ATENÇÃO: para ver os resultados dos exercícios, por favor descomente os console.log() de cada um');
+
 /*
   01
 
@@ -7,6 +11,9 @@
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
+const arrImpares = randomNumbers.filter(item => item%2 != 0);
+//console.log(randomNumbers, arrImpares);
+
 /*
   02
 
@@ -14,6 +21,19 @@ const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 */
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
+
+const menores = crazyNumbers.reduce((acumulator, item) => {
+ 
+  if(item < 501){
+    acumulator += 1;
+    //console.log(item)
+  }
+    
+  
+  return acumulator;
+}, 0); //o acumulator começa com valor 0 (zero)
+
+//console.log(`${menores} números menores que 501`)
 
 /*
   03
@@ -23,6 +43,9 @@ const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 */
 
 const numbers = [5, 7, 3]
+
+const arrQuadrado = numbers.map( item => item * item);
+//console.log(numbers, arrQuadrado);
 
 /*
   04
@@ -45,6 +68,9 @@ const tarantinoMovies = [
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
 
+const filmesAntigos = tarantinoMovies.filter( movie =>  movie.release < 2000);
+//console.log(tarantinoMovies, filmesAntigos);
+
 /*
   05
 
@@ -61,6 +87,9 @@ const tvShows = [
   { name: 'House M.D.', releaseYear: 2004 },
   { name: 'Watchmen', releaseYear: 2019 }
 ]
+
+const showsNames = tvShows.map( item => item.name);
+//console.log(tvShows, showsNames);
 
 /*
   06
@@ -86,3 +115,12 @@ const cart = [
   - Nome 2
   - Nome 3
 */
+
+const gameList = cart.reduce((acumulator, item) => {
+
+  return acumulator + `- ${item.name} \n`;
+
+}, ""); //acumulator começa com uma string vazia
+
+/*console.log(cart)
+console.log(gameList);*/
