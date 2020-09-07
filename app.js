@@ -1,6 +1,6 @@
-alert('Pressione Ctrl + F12 para ver o console do JavaScript!');
+//alert('Pressione Ctrl + F12 para ver o console do JavaScript!');
 
-console.warn('ATENÇÃO: para ver os resultados dos exercícios, por favor descomente os console.log() de cada um');
+//console.warn('ATENÇÃO: para ver os resultados dos exercícios, por favor descomente os console.log() de cada um');
 
 /*
   01
@@ -11,8 +11,10 @@ console.warn('ATENÇÃO: para ver os resultados dos exercícios, por favor desco
 
 const randomNumbers = [10, 30, 15, 25, 50, 40, 5]
 
-const arrImpares = randomNumbers.filter(item => item%2 != 0);
-//console.log(randomNumbers, arrImpares);
+const getOddNumbers = number => number % 2 === 1;
+
+const oddNumbers = randomNumbers.filter(getOddNumbers);
+//console.log(randomNumbers, oddNumbers);
 
 /*
   02
@@ -22,16 +24,11 @@ const arrImpares = randomNumbers.filter(item => item%2 != 0);
 
 const crazyNumbers = [937, 5, 395, 402, 501, 333, 502, 781, 3, 691]
 
-const menores = crazyNumbers.reduce((acumulator, item) => {
- 
-  if(item < 501){
-    acumulator += 1;
-    //console.log(item)
-  }
-    
-  
-  return acumulator;
-}, 0); //o acumulator começa com valor 0 (zero)
+const countNumbersLessThan501 = (acumulator, item) => {
+  return (item < 501) ? ++acumulator : acumulator;
+}
+
+const menores = crazyNumbers.reduce(countNumbersLessThan501, 0); //o acumulator começa com valor 0 (zero)
 
 //console.log(`${menores} números menores que 501`)
 
@@ -44,7 +41,7 @@ const menores = crazyNumbers.reduce((acumulator, item) => {
 
 const numbers = [5, 7, 3]
 
-const arrQuadrado = numbers.map( item => item * item);
+const arrQuadrado = numbers.map( item => item ** 2);
 //console.log(numbers, arrQuadrado);
 
 /*
@@ -68,7 +65,7 @@ const tarantinoMovies = [
   { name: 'Kill Bill: Volume 1', release: 2003 }
 ]
 
-const filmesAntigos = tarantinoMovies.filter( movie =>  movie.release < 2000);
+const filmesAntigos = tarantinoMovies.filter( ({ release }) => release < 2000);
 //console.log(tarantinoMovies, filmesAntigos);
 
 /*
@@ -88,7 +85,7 @@ const tvShows = [
   { name: 'Watchmen', releaseYear: 2019 }
 ]
 
-const showsNames = tvShows.map( item => item.name);
+const showsNames = tvShows.map( ({ name }) => name);
 //console.log(tvShows, showsNames);
 
 /*
@@ -116,9 +113,9 @@ const cart = [
   - Nome 3
 */
 
-const gameList = cart.reduce((acumulator, item) => {
+const gameList = cart.reduce((acumulator, { name }) => {
 
-  return acumulator + `- ${item.name} \n`;
+  return acumulator + `- ${name} \n`;
 
 }, ""); //acumulator começa com uma string vazia
 
